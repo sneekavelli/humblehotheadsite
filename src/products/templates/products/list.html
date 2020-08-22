@@ -1,7 +1,6 @@
 
-{% load static from staticfiles %}
+{% load static %}
 {% for obj in object_list %}
-{{ obj.title }} <br/>
+<a href="/products/{{obj.pk}}/">{{ obj.title }}</a>
+ <br/>
 {% endfor %}
-
-

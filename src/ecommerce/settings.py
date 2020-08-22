@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'accounts'
 
 
-    
+
 ]
 
 MIDDLEWARE = [
@@ -138,4 +138,5 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_ROOT = os.path.join (os.path.dirname(BASE_DIR), "static_cdn","media_root")
+# print(MEDIA_ROOT)
 MEDIA_URL = '/media/'
