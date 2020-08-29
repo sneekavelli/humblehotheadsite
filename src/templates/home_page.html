@@ -17,10 +17,14 @@
     {% block body_block %}
     <title>Humble Hotheads Home Page</title>
      <ul>
-      <li><a href="auth/register.html"> Register </a></li>
-       <li><a href="auth/register.html"> Contact </a></li>
+       {% if not request.user.is_authenticated %}
+          <li><a href="/accounts/register"> Register </a></li>
+          <li><a href="/accounts/login"> Login </a></li>
+       {% else %}
+          <li><a href="/accounts/logout"> Logout </a></li>
+       {% endif %}
+       <li><a href=""> Contact </a></li>
         <li><a href="auth/register.html"> Returns </a></li>
-        <li><a href="auth/register.html"> Login </a></li>
 
 
 
@@ -36,7 +40,7 @@
                     <img src="{% static 'Label.jpg' %}" class='img-fluid' />
             <p> {{content}}</p>
             <div class='col-sm-6 col-12'>
-          
+
         </div>
     </div>
 
@@ -50,7 +54,7 @@
     {% endif %}
 
 
-  </div> 
+  </div>
 
 <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

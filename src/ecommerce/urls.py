@@ -22,11 +22,11 @@ from django.contrib import admin
 from django.urls import path, include
 from .views import *
 from products.views import (
- ProductListView, 
- product_list_view, 
- ProductDetailView, 
+ ProductListView,
+ product_list_view,
+ ProductDetailView,
  #ProductDetailSlugView,
- product_detail_view,     
+ product_detail_view,
  ProductFeaturedListView,
  ProductFeaturedDetailView
 )
@@ -36,7 +36,7 @@ from .views import (
      contact_page,
      login_page,
      register_page
-     
+
  	)
 from django.contrib.auth import get_user_model
 
@@ -44,9 +44,9 @@ from django.contrib.auth import get_user_model
 
 
 urlpatterns = [
-    
-    
-    path('home/', home_page),  
+
+
+    path('home/', home_page,name='home'),
     path('contact/', contact_page),
     path('login/', login_page),
     path('register/', register_page),
@@ -59,8 +59,8 @@ urlpatterns = [
     #path('products/<str:slug>', ProductDetailSlugView.as_view()),
     path('products-fbv/<int:pk>/', product_detail_view),
     path('admin/', admin.site.urls),
-                                                        
-            #path('accounts/', include('accounts.urls')),
+
+    path('accounts/', include('accounts.urls')),
 ]
 if settings.DEBUG:
     from django.conf.urls.static import static

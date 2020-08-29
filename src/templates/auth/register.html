@@ -4,9 +4,9 @@
 
 
   <h2>Register Here</h2>
-  <form method="post">
+  <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {% for field in form %}
+    {% for field in user_form %}
       <p>
         {{ field.label_tag }}<br>
         {{ field }}
@@ -19,4 +19,4 @@
       </p>
     {% endfor %}
     <button type="submit">Register</button>
-  </form> 
+  </form>
