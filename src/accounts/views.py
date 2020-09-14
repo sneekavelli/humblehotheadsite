@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate,login,logout
 from .forms import Form,LoginForm
@@ -11,7 +11,7 @@ def register(request):
             user = user_form.save()
             login(request,user)
 
-            return HttpResponseRedirect('/home/')
+            return redirect('home')
         else:
             return render(request,'auth/register.html',{'user_form':user_form,})
 
@@ -28,11 +28,11 @@ def login_(request):
             print(CustomUser.objects.get(email=form.cleaned_data['email']))
             if user:
                 login(request,user)
-                return HttpResponseRedirect('/home/')
+                return redirect('home')
         return render(request,'auth/login.html',{'form':form,'error':'Invalid email and/or password'})
     return render(request,'auth/login.html',{'form':form})
 
 
 def logout_(request):
     logout(request)
-    return HttpResponseRedirect('/home/')
+    return redirect('home')

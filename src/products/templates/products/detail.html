@@ -1,4 +1,6 @@
 {% load static %}
 {{ object.title}} <br/>
 {{ object.description }} <br/>
+<a href="{% url 'add_to_cart' object.pk %}">Add to cart</a> <br/>
+
 <img src='{{ object.image.url }}' class='img-fluid' />

@@ -1,8 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404,redirect
 from django.views.generic import ListView, DetailView
 from .models import Product
 import datetime
 from django.http import Http404
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 class ProductFeaturedListView(ListView):
@@ -84,20 +85,19 @@ def product_detail_view(request, pk=None, *args, **kwargs):
 	print(instance)
 	if instance is None:
 	 	raise Http404("Product doesn't exist")
-	# #if instance is None:
-	# #	raise Http404("Product doesnt exist")
-	# #print(qs)
-	#try:
-	#	instance
-	# qs = Product.objects.filter(id=pk)
-
-	# if qs.exists() and qs.count() == 1:
-	#  	instance = qs.first()
-	# else:
-	#  	raise Http404("product doesn't exist")
-	# context = {
-	# 	'object' : instance
-	# 	}
-
 
 	return render(request, "products/detail.html", context)
+
+@login_required
+def view_cart(request):
+	print(request.user.cart.all())
+	return render(request,'cart.html',{'products':request.user.cart})
+
+@login_required
+def add_to_cart(request,pk):
+	try:
+		request.user.cart.add(Product.objects.get(pk=pk))
+
+	except Product.DoesNotExist:
+		pass
+	return redirect('view_cart')

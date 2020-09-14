@@ -28,7 +28,9 @@ from products.views import (
  #ProductDetailSlugView,
  product_detail_view,
  ProductFeaturedListView,
- ProductFeaturedDetailView
+ ProductFeaturedDetailView,
+ view_cart,
+ add_to_cart
 )
 
 from .views import (
@@ -46,7 +48,7 @@ from django.contrib.auth import get_user_model
 urlpatterns = [
 
 
-    path('home/', home_page,name='home'),
+    path('', home_page,name='home'),
     path('contact/', contact_page),
     path('login/', login_page),
     path('register/', register_page),
@@ -61,6 +63,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('accounts/', include('accounts.urls')),
+
+    path('user/cart/',view_cart,name='view_cart'),
+    path('user/cart/add/<pk>/',add_to_cart,name='add_to_cart'),
+
 ]
 if settings.DEBUG:
     from django.conf.urls.static import static
