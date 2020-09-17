@@ -1,13 +1,17 @@
-
+{% extends 'base.html' %}
 {% load static %}
-{% if products.all|length == 0 %}
-  <div style="color:Red">
-    Nothing to show in cart
-  </div>
-{% else %}
-<h1>Your cart:</h1></br>
-  {% for obj in products.all %}
-  <a href="/products/{{obj.pk}}/">{{ obj.title }}</a>
-   <br/>
-  {% endfor %}
-{% endif %}
+{% block content %}
+<div class="container">
+  {% if products.all|length == 0 %}
+    <div class="alert alert-info">
+      Nothing to show in cart
+    </div>
+  {% else %}
+  <h1>Your cart:</h1></br>
+    {% for obj in products.all %}
+    <a href="/products/{{obj.pk}}/">{{ obj.title }}</a>
+     <br/>
+    {% endfor %}
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+  {{ object.title}} <br/>
+  {{ object.description }} <br/>
+  <a href="{% url 'add_to_cart' object.pk %}">Add to cart</a> <br/>
+
+  <img src='{{ object.image.url }}' class='img-thumbnail'>
+
+</div>
+{% endblock %}

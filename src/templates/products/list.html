@@ -1,0 +1,12 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+  <ul class="list-group">
+    {% for obj in object_list %}
+      <a href="/products/{{obj.pk}}/" class="list-group-item list-group-item-action">{{ obj.title }}</a>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
