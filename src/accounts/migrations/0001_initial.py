@@ -10,7 +10,6 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('products', '0023_auto_20200704_1516'),
-        ('auth', '0012_alter_user_first_name_max_length'),
     ]
 
     operations = [
