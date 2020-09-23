@@ -47,6 +47,11 @@ class ProductManager(models.Manager):
 			return qs.first()
 		return None
 
+class Category(models.Model):
+	category = models.CharField(max_length=50,unique=True)
+	def __str__(self):
+		return self.category
+
 class Product (models.Model):
 	title 			= models.CharField(max_length=120)
 	slug			= models.SlugField(blank=True)
@@ -56,6 +61,7 @@ class Product (models.Model):
 	objects 		= ProductManager()
 	featured		= models.BooleanField(default=False)
 	active			= models.BooleanField(default=True)
+	category 		= models.ForeignKey(to=Category,on_delete=models.CASCADE)
 
 	objects = ProductManager
 
@@ -64,6 +70,7 @@ class Product (models.Model):
 
 	def __unicode__(self):
 		return self.title
+
 
 def unique_slug_generator(instance, new_slug=None):
     if new_slug is not None:

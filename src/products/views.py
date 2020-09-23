@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404,redirect
 from django.views.generic import ListView, DetailView
-from .models import Product
+from .models import Product,Category
 import datetime
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
@@ -32,18 +32,14 @@ class ProductListView(ListView):
 
 	template_name = "products/list.html"
 
-	#def get_context_data(self, *args, **kwargs):
-	#	context = super(ProductListView, self).get_context_data(*args **kwargs)
-	#	print(context)
-	#	return context
-	def get_queryset(self, *args, **kwargs):
-			request = self.request
-			return Product.objects.all()
-
 
 def product_list_view(request):
 	queryset = Product.objects.all()
-	context = { 'object_list' :queryset}
+	if 'category' in request.GET:
+		cats = request.GET.get('category').split(',')
+		cats = list(map(lambda x:int(x),cats))
+		queryset = Product.objects.filter(category__pk__in=cats)
+	context = { 'object_list' :queryset,'categories':Category.objects.all()}
 	return render(request, "products/list.html", context)
 
 

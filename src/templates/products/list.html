@@ -3,10 +3,52 @@
 {% load static %}
 {% block content %}
 <div class="container">
-  <ul class="list-group">
+  <div class="dropdown mt-2">
+    <button class="btn btn-secondary" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Filters
+    </button>
+    <div class="dropdown-menu drop_menu">
+      <div class="d-flex">
+        <button type="button" class="btn btn-outline-info ml-auto" onclick="cal_filters()">Apply filters</button>
+      </div>
+      <div class="form-group mx-4">
+        <label>Category:</label>
+        <div class="row ml-4">
+          {% for cat in categories %}
+            <div class="col-4">
+              <input type="checkbox" name="cat_check" value="{{cat.pk}}">
+              <label>{{cat.category}}</label>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <ul class="list-group mt-5">
     {% for obj in object_list %}
       <a href="/products/{{obj.pk}}/" class="list-group-item list-group-item-action">{{ obj.title }}</a>
     {% endfor %}
   </ul>
 </div>
+{% endblock %}
+{% block js %}
+<script type="text/javascript">
+  $(function () {
+
+  })
+  function cal_filters() {
+    let cat = []
+    $("input[name='cat_check']:checked").map(function () {
+      cat.push($(this).val())
+    })
+    if (cat.length === 0) {
+      location.href=`/products-fbv/`
+    }
+    else {
+      cat = cat.join(',')
+      location.href=`/products-fbv/?category=${cat}`
+    }
+
+  }
+</script>
 {% endblock %}
