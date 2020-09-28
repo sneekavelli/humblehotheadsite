@@ -64,6 +64,7 @@ class Product (models.Model):
 	category 		= models.ForeignKey(to=Category,on_delete=models.CASCADE)
 
 	objects = ProductManager
+	gender = models.CharField(choices = (('men','Men'),('women','Women'),('kids','Kids')),max_length=10,default='men')
 
 	def __str__(self):
 		return self.title

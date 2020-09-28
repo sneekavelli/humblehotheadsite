@@ -39,6 +39,9 @@ def product_list_view(request):
 		cats = request.GET.get('category').split(',')
 		cats = list(map(lambda x:int(x),cats))
 		queryset = Product.objects.filter(category__pk__in=cats)
+	if 'gender' in request.GET:
+		queryset = Product.objects.filter(gender=request.GET.get('gender'))
+
 	context = { 'object_list' :queryset,'categories':Category.objects.all()}
 	return render(request, "products/list.html", context)
 
