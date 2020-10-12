@@ -16,7 +16,7 @@
 {% endblock %}
 {% block content %}
 <div class='container'>
-    <div class='row'>
+    <!-- <div class='row'>
         <div class='col-6 mx-auto'>
                 <h1>{{ n|floatformat }} {{ title }}</h1>
                <h2> Join the Humble Hothead Army! </h2>
@@ -26,7 +26,7 @@
 
         </div>
       </div>
-    </div>
+    </div> -->
     <div class='row'>
         <div class="col-4">
           <img src="{% static 'mens.jpg' %}" class='img-fluid' /></br>
@@ -42,7 +42,7 @@
         </div>
     </div>
 
-  <div class='row'>
+  <!-- <div class='row'>
     <div class='col'>
       {% if request.user.is_authenticated %}
       <h1>Premium</h1>
@@ -51,6 +51,6 @@
     {% endif %}
 
 
-  </div>
+  </div> -->
 </div>
 {% endblock %}
