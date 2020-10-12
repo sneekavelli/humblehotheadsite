@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Buy cool new product</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+      <div class="d-flex flex-column">
+        <div class="mx-auto"><h4>Redirecting to checkout page. Dont refresh</h4></div>
+        <div class="mx-auto spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script type="text/javascript">
+
+    // Create an instance of the Stripe object with your publishable API key
+
+    var stripe = Stripe("pk_test_51H4lqSKyaH5lQvzeUwCXlhS4NDTfYGhnmbUXfMYY1ECmTWdgzzOEdQYmwHdsiPAy6Gtz2IRR7MgPuJS4dIg2y42N007sfSKleW");
+    fetch("/create-session", {
+      method: "GET",
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (session) {
+        return stripe.redirectToCheckout({ sessionId: session.id });
+      })
+      .then(function (result) {
+        if (result.error) {
+          alert(result.error.message);
+        }
+      })
+      .catch(function (error) {
+        console.error("Error:", error);
+      });
+  </script>
+
+</html>

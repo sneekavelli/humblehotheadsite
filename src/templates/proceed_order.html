@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+<div class='container'>
+  <a href="/addresses/">Add address</a>
+
+  {% if request.user.address_set.all|length == 0 %}
+    <div class="alert alert-info">
+      Enter a address to proceed
+    </div>
+  {% else  %}
+  <form class="mt-5" method="post">
+    {% csrf_token %}
+    <label for="">Select a address:</label>
+    {% for i in request.user.address_set.all %}
+      <div class="custom-control custom-radio">
+        <input checked type="radio" id='add_{{i.pk}}' name="address" value="{{i.pk}}" class="custom-control-input">
+        <label class="custom-control-label" for="add_{{i.pk}}">{{i}}</label>
+      </div>
+    {% endfor %}
+    <input type="submit" name="" value="Proceed">
+  </form>
+  {% endif %}
+</div>
+
+{% endblock %}

@@ -37,3 +37,9 @@ class CustomUser(AbstractUser):
     REQUIRED_FIELDS = []
 
     objects = CustomUserManager()
+
+    @property
+    def get_cart_total(self):
+        tot = 0
+        for i in self.cart.all(): tot+=i.price
+        return tot

@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponseRedirect, HttpResponse
-from django.contrib.auth import authenticate,login,logout
-from .forms import Form,LoginForm
+from django.contrib.auth import authenticate,login,logout,decorators
+from .forms import Form,LoginForm,ChangeForm
 from .models import CustomUser
 
 def register(request):
@@ -36,3 +36,13 @@ def login_(request):
 def logout_(request):
     logout(request)
     return redirect('home')
+
+@decorators.login_required()
+def profile(request):
+    form = ChangeForm(instance=request.user)
+    if request.method == 'POST':
+        form = ChangeForm(request.POST,request.FILES,instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    return render(request,'auth/profile.html',{'form':form})

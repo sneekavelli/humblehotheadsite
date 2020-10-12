@@ -100,3 +100,12 @@ def add_to_cart(request,pk):
 	except Product.DoesNotExist:
 		pass
 	return redirect('view_cart')
+
+@login_required
+def remove_from_cart(request,pk):
+	try:
+		request.user.cart.remove(Product.objects.get(pk=pk))
+
+	except Product.DoesNotExist:
+		pass
+	return redirect('view_cart')

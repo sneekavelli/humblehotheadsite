@@ -15,11 +15,11 @@ def home_page(request):
 	'n': random.random()
 	}
 	if request.user.is_authenticated:
-	    	
+
 	    context["premium_content"] = "YEAHH"
-		
+
 	return render(request, 'home_page.html' , context)
-		
+
 
 
 def login_page(request):
@@ -35,13 +35,13 @@ def login_page(request):
     	print(user)
     	if user is not None:
     		login(request, user)
-    
+
     		return redirect("/home")
     	else:
     		ptint("Error")
-		
 
-    return render(request, "auth/login.html", context)	
+
+    return render(request, "auth/login.html", context)
 
 def register_page(request):
     if request.method == 'POST':
@@ -67,7 +67,7 @@ def contact_page(request):
 	if contact_form.is_valid():
 		print(contact_form.cleaned_data )
 	#if request.method == "POST" :
-		# print (request.POST) 
+		# print (request.POST)
 		# print (request.POST.get('fullname'))
 		# print (request.POST.get('email'))
 		# print (request.POST.get('content'))
@@ -76,13 +76,3 @@ def contact_page(request):
 #def about(request):
 #	time = datetime.datetime.now()
 #	return render(request, 'about.html', {'time':time})
-
-
-
-
-	
-
-
-
-
-

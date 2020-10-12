@@ -5,7 +5,9 @@ from django.db.models.signals import pre_save, post_save
 
 from django.utils.text import slugify
 from django.utils.crypto import get_random_string
-
+from phonenumber_field.modelfields import PhoneNumberField
+from django.conf import settings
+import uuid
 
 # Create your models here.
 def get_filename_ext(filename):
@@ -100,3 +102,35 @@ def product_pre_save_receiver(sender, instance, *args, **kwargs):
 
 
 pre_save.connect(product_pre_save_receiver, sender = Product)
+
+class Address(models.Model):
+    name = models.CharField(max_length=100,)
+    address = models.TextField()
+    city = models.CharField(max_length=100)
+    state_name = models.CharField(max_length=100)
+    country_name = models.CharField(max_length=100)
+    zip = models.CharField(max_length=20)
+    phone = PhoneNumberField(help_text='Contact phone number with country code')
+    email = models.EmailField(null=True,blank=True)
+    user = models.ForeignKey(to=settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+
+    def get_json(self):
+        serialized_object = serializers.serialize('python', [self,])
+        return serialized_object[0]['fields']
+
+    def __str__(self):
+        return f'{self.address} - City-{self.city} State-{self.state_name} Country-{self.country_name}'
+
+
+class Orders(models.Model):
+	customer_id = models.CharField(max_length=100)
+	stripe_id = models.CharField(max_length=200)
+	user = models.ForeignKey(to=settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+	address = models.ForeignKey(Address,on_delete=models.CASCADE)
+	order_id = models.UUIDField(unique=True,default=uuid.uuid4)
+	added = models.DateTimeField(auto_now_add=True)
+	def __str__(self):
+		return str(self.order_id)
+
+	class Meta:
+		ordering = ('-added',)

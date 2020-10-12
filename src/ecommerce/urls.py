@@ -33,6 +33,8 @@ from products.views import (
  add_to_cart
 )
 
+from products import stripe_views,order_views
+
 from .views import (
  	 home_page,
      contact_page,
@@ -66,6 +68,16 @@ urlpatterns = [
 
     path('user/cart/',view_cart,name='view_cart'),
     path('user/cart/add/<pk>/',add_to_cart,name='add_to_cart'),
+
+    path('create-session/',stripe_views.get_session),
+    path('success/',stripe_views.success),
+    path('payment/',stripe_views.payment,name='payment'),
+
+    path('addresses/',order_views.address_view),
+    path('address_delete/<pk>/',order_views.address_delete,name='address_delete'),
+
+    path('proceed_order/',order_views.proceed_order)
+
 
 ]
 if settings.DEBUG:

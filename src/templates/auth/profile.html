@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Humble Hotheads Home Page{% endblock %}
+{% block content %}
+<div class='container'>
+  <a href="/addresses/" role="button" class="btn btn-info">View and edit addresses</a>
+  <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
+     {{ form.as_p }}
+     <button type='submit' class='btn btn-primary'>Submit</button>
+  </form>
+</div>
+{% endblock %}

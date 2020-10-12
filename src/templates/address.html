@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+<div class='container'>
+  <ul class="list-group">
+    {% for i in addresses %}
+    <div class="list-group-item d-flex">{{i}}
+      <a href="{% url 'address_delete' i.pk %}" role="button" class="text-danger close ml-auto">
+        <span aria-hidden="true">&times;</span>
+      </a>
+    </div>
+    {% endfor %}
+  </ul>
+  <div class="m-2 border rounded">
+    <form class="m-5" method="post">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-12">
+          {{form.name|as_crispy_field}}
+        </div>
+        <div class="col-12">
+          {{form.address|as_crispy_field}}
+        </div>
+        <div class="col-md-4 col-12">
+          {{form.city|as_crispy_field}}
+        </div>
+        <div class="col-md-4 col-12">
+          {{form.state_name|as_crispy_field}}
+        </div>
+        <div class="col-md-4 col-12">
+          {{form.country_name|as_crispy_field}}
+        </div>
+        <div class="col-md-4 col-12">
+          {{form.zip|as_crispy_field}}
+        </div>
+        <div class="col-md-4 col-12">
+          {{form.phone|as_crispy_field}}
+        </div>
+        <div class="col-md-4 col-12">
+          {{form.email|as_crispy_field}}
+        </div>
+      </div>
+      <input type="submit" value="Add address" class="btn btn-info">
+    </form>
+  </div>
+
+</div>
+
+{% endblock %}

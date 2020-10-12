@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     #our apps
     #'pages',
     'products',
-    'accounts'
+    'accounts',
+    'phonenumber_field',
+    'crispy_forms'
 
 
 
@@ -130,7 +132,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 STATIC_URL = '/static/'
-
+CRISPY_TEMPLATE_PACK  = 'bootstrap4'
 
 
 STATIC_ROOT = os.path.join (os.path.dirname(BASE_DIR), "static_cdn", "static_root")
@@ -142,3 +144,5 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = os.path.join (os.path.dirname(BASE_DIR), "static_cdn","media_root")
 # print(MEDIA_ROOT)
 MEDIA_URL = '/media/'
+
+STRIPE_API_KEY_SECRET = 'sk_test_51H4lqSKyaH5lQvze3jwgHYetfXP5ns4mHj7pIJs0vv7xPjhADCBkXTQqPn5P2kGm592vdWFH4lF4Dpjr0tyIFpZy00aoHTpRbM'
