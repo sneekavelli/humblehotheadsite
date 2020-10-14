@@ -1,12 +1,30 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="container">
-  {{ object.title}} <br/>
-  {{ object.description }} <br/>
-  <a href="{% url 'add_to_cart' object.pk %}">Add to cart</a> <br/>
+<style media="screen">
+.image{
+    max-height: 600px;
+    max-width: 600px;
 
-  <img src='{{ object.image.url }}' class='img-thumbnail'>
+    width: auto;
+    height: auto;
+  }
+</style>
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <h3>{{object.title}}</h3>
+      <h5>{{object.description}}</h5>
+      <h5>{{object.price}} $</h5>
+
+      <a role="button" class="btn btn-outline-info" href="{% url 'add_to_cart' object.pk %}">Add to cart</a> <br/>
+
+    </div>
+    <div class="col-8">
+      <img src='{{ object.image.url }}' class='image'>
+
+    </div>
+  </div>
 
 </div>
 {% endblock %}

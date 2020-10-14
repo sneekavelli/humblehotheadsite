@@ -15,19 +15,57 @@
 
 {% endblock %}
 {% block content %}
+<link rel="stylesheet" href="/static/slick.css">
+
+<link rel="stylesheet" href="/static/slick-theme.css">
+<style media="screen">
+.slick-prev:before, .slick-next:before{
+    color:gray;
+}
+.carousel{
+    max-height: 400px;
+    max-width: 400px;
+
+    width: auto;
+    height: auto;
+  }
+</style>
+
 <div class='container'>
     <!-- <div class='row'>
-        <div class='col-6 mx-auto'>
-                <h1>{{ n|floatformat }} {{ title }}</h1>
-               <h2> Join the Humble Hothead Army! </h2>
-                <img src="{% static 'Label.jpg' %}" class='img-fluid' />
-        <p> {{content}}</p>
-        <div class='col-sm-6 col-12'>
 
-        </div>
-      </div>
     </div> -->
-    <div class='row'>
+    <div class="row">
+      <div class="col-4">
+        <div class="first_half">
+          {% for i in product0 %}
+          <div>
+            <img src="{{i.image.url}}" class="carousel">
+            <a href="/products/{{i.pk}}/" class="stretched-link"></a>
+          </div>
+          {% endfor %}
+        </div>
+
+      </div>
+      <div class='col-4'>
+        <div class="m-2">
+          <img src="{% static 'Label.jpg' %}" class='img-fluid' />
+        </div>
+
+      </div>
+      <div class="col-4">
+        <div class="second_half">
+          {% for i in product1 %}
+            <div>
+              <img src="{{i.image.url}}" class="carousel">
+              <a href="/products/{{i.pk}}/" class="stretched-link"></a>
+            </div>
+          {% endfor %}
+        </div>
+
+      </div>
+    </div>
+    <!-- <div class='row'>
         <div class="col-4">
           <img src="{% static 'mens.jpg' %}" class='img-fluid' /></br>
           <a href="/products-fbv?gender=men" class="stretched-link">Men's</a>
@@ -40,7 +78,7 @@
           <img src="{% static 'kids.jpg' %}" class='img-fluid' /></br>
           <a href="/products-fbv?gender=kids" class="stretched-link">Kid's</a>
         </div>
-    </div>
+    </div> -->
 
   <!-- <div class='row'>
     <div class='col'>
@@ -53,4 +91,23 @@
 
   </div> -->
 </div>
+{% endblock %}
+{% block js %}
+<script type="text/javascript" src="/static/slick.js"></script>
+<script type="text/javascript">
+  $(function () {
+    var opt = {
+      // vertical:true,
+      fade: true,
+      slidesToScroll: 1,
+      dots: true,
+      centerMode: true,
+      autoplay: true,
+      autoplaySpeed: 1500,
+      }
+    $(".first_half").slick(opt)
+    $(".second_half").slick(opt)
+
+  })
+</script>
 {% endblock %}
