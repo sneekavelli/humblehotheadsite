@@ -16,17 +16,17 @@
 <div style="position: sticky;top:0;left:0">
   <marquee direction="right" style="position: sticky">
     <div class="d-flex fonts">
-      <h2 class="mx-auto">Humble Hotheads</h2>
+      <h3 class="mx-auto">Humble Hotheads</h2>
     </div>
     <div class="d-flex fonts">
-      <h2 class="mx-auto">London</h2>
+      <h3 class="mx-auto">London</h2>
     </div>
   </marquee>
 
 </div>
 
 <div class="d-flex head">
-  <h3 class="mx-auto">Welcome 2 the army</h3>
+  <h4 class="mx-auto">Welcome 2 the army</h3>
 </div>
 
 <nav class="navbar navbar-expand-lg navbar-light mb-3">
@@ -47,7 +47,7 @@
     <ul class="navbar-nav ml-auto">
       {% if request.user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="/user/cart/">View cart</a>
+          <a class="nav-link" href="/user/cart/"><i class="fa fa-shopping-cart"></i></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'logout' %}">Logout</a>

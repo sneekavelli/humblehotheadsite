@@ -26,10 +26,15 @@
     max-height: 400px;
     max-width: 400px;
 
-    width: auto;
+    width: 100%;
     height: auto;
-    border: 0.75px solid #3c3c3d ;
-    border-radius: 1px;
+}
+.carousel-div{
+  border: 0.75px solid #3c3c3d ;
+  border-radius: 1px;
+  background-color: black;
+  color: white;
+
 }
 
 </style>
@@ -42,8 +47,15 @@
       <div class="col-4">
         <div class="first_half">
           {% for i in product0 %}
-          <div >
+          <!-- <div>
+            <img src="{{i.image.url}}" class="carousel mx-auto">
+            <a href="/products/{{i.pk}}/" class="stretched-link"></a>
+          </div> -->
+          <div class="carousel-div">
             <img src="{{i.image.url}}" class="carousel">
+            <h4>{{i.title}}</h4>
+            <h4>{{i.price}} £</h4>
+
             <a href="/products/{{i.pk}}/" class="stretched-link"></a>
           </div>
           {% endfor %}
@@ -59,8 +71,11 @@
       <div class="col-4">
         <div class="second_half">
           {% for i in product1 %}
-            <div >
+            <div class="carousel-div">
               <img src="{{i.image.url}}" class="carousel">
+              <h4>{{i.title}}</h4>
+              <h4>{{i.price}} £</h4>
+
               <a href="/products/{{i.pk}}/" class="stretched-link"></a>
             </div>
           {% endfor %}
@@ -97,6 +112,7 @@
 {% endblock %}
 {% block js %}
 <script type="text/javascript" src="/static/slick.js"></script>
+
 <script type="text/javascript">
   $(function () {
     var opt = {

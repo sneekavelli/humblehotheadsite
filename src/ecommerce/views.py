@@ -15,7 +15,7 @@ def home_page(request):
 	"title": "THE OFFICIAL HUMBLE HOTHEADS WEBSITE",
 	"content": "Welcome to the home page",
 	'n': random.random(),
-	'product0':Product.objects.all()[:int(le/2)],'product1':Product.objects.all()[int(le/2):],
+	'product0':Product.objects.all()[:int(le/2)],'product1':Product.objects.all()[int(le/2):],'products':Product.objects.all()
 	}
 	if request.user.is_authenticated:
 
