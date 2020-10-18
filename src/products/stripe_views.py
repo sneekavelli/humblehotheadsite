@@ -22,7 +22,7 @@ def get_session(request):
         line_items=[
             {
                 'price_data': {
-                    'currency': 'usd',
+                    'currency': 'gbp',
                     'unit_amount': int(round(request.user.get_cart_total,2)*100),
                     'product_data': {
                     'name': 'Stubborn Attachments',
