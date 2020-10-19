@@ -25,7 +25,6 @@ def login_(request):
         form = LoginForm(request.POST)
         if form.is_valid():
             user = authenticate(request,email=form.cleaned_data['email'],password=form.cleaned_data['password'])
-            print(CustomUser.objects.get(email=form.cleaned_data['email']))
             if user:
                 login(request,user)
                 return redirect('home')

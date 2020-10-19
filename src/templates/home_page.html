@@ -30,7 +30,7 @@
     height: auto;
 }
 .carousel-div{
-  border: 0.75px solid #3c3c3d ;
+  border: 0.75px solid white ;
   border-radius: 1px;
   background-color: black;
   color: white;
@@ -73,8 +73,8 @@
           {% for i in product1 %}
             <div class="carousel-div">
               <img src="{{i.image.url}}" class="carousel">
-              <h4>{{i.title}}</h4>
-              <h4>{{i.price}} £</h4>
+              <h4 class="ml-1">{{i.title}}</h4>
+              <h4 class="ml-1">{{i.price}} £</h4>
 
               <a href="/products/{{i.pk}}/" class="stretched-link"></a>
             </div>

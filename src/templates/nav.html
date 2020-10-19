@@ -1,19 +1,21 @@
 <style media="screen">
   .fonts{
-    font-family: Brush Script MT, cursive;
+    font-family: Garamond, cursive;
     font-size: 1.2em
   }
   .head{
-    font-family: Courier, cursive;
+    font-family: Garamond, cursive;
     font-weight: bolder;
   }
   .navbar{
     border: 0.75px solid black ;
     border-radius: 1px;
   }
-
+  a,li,div{
+    color: white !important;
+  }
 </style>
-<div style="position: sticky;top:0;left:0">
+<div style="position: sticky;top:0;left:0;z-index:100">
   <marquee direction="right" style="position: sticky">
     <div class="d-flex fonts">
       <h3 class="mx-auto">Humble Hotheads</h2>
@@ -32,7 +34,7 @@
 <nav class="navbar navbar-expand-lg navbar-light mb-3">
   <a class="navbar-brand" href="/">Home</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <i class="fa fa-bars text-light"></i>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">

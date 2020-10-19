@@ -30,8 +30,8 @@ class CustomUserManager(BaseUserManager):
 class CustomUser(AbstractUser):
     username = None
     email = models.EmailField( unique=True)
-    portfolio_site = models.URLField(blank=True,null=True)
-    profile_pic = models.ImageField(upload_to='profile_pics',blank=True,null=True)
+    # portfolio_site = models.URLField(blank=True,null=True)
+    # profile_pic = models.ImageField(upload_to='profile_pics',blank=True,null=True)
     cart = models.ManyToManyField(to=Product,)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

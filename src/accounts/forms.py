@@ -5,12 +5,12 @@ import django.forms as forms
 class Form(UserCreationForm):
     class Meta:
         model = get_user_model()
-        fields = ('email','first_name','last_name','password1','password2','portfolio_site','profile_pic')
+        fields = ('email','first_name','last_name','password1','password2')
 
 class ChangeForm(UserChangeForm):
     class Meta:
         model = get_user_model()
-        fields = ('email','first_name','last_name','portfolio_site','profile_pic')
+        fields = ('email','first_name','last_name')
         widgets = {
             'email':forms.EmailInput(attrs={'readonly':'readonly'})
         }
