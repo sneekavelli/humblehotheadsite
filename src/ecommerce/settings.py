@@ -145,4 +145,4 @@ MEDIA_ROOT = os.path.join (os.path.dirname(BASE_DIR), "static_cdn","media_root")
 # print(MEDIA_ROOT)
 MEDIA_URL = '/media/'
 
-STRIPE_API_KEY_SECRET = 'sk_test_51H4lqSKyaH5lQvze3jwgHYetfXP5ns4mHj7pIJs0vv7xPjhADCBkXTQqPn5P2kGm592vdWFH4lF4Dpjr0tyIFpZy00aoHTpRbM'
+STRIPE_API_KEY_SECRET = 'sk_test_51He3NDEuJvqe7XjdP1oSrgQPP9pHCEuYhYEs8d7XLQfRNbwmpSZAYTNWqxvH4VduVOUD7lNsy4nnXU5HrZzrY63G00PvZrMRVo'

@@ -12,7 +12,7 @@
     {% for obj in products.all %}
     <div class="d-flex">
       <a href="/products/{{obj.pk}}/">{{ obj.title }}</a>
-      <a href="" role="button" class="text-danger close ml-auto">
+      <a href="/user/cart/remove/{{obj.pk}}/" role="button" class="text-danger close ml-auto">
         <span aria-hidden="true">&times;</span>
       </a>
     </div>

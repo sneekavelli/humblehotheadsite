@@ -9,10 +9,6 @@ from django.contrib.auth.decorators import login_required
 class ProductFeaturedListView(ListView):
 	template_name = "products/lists.html"
 
-#	def get_queryset(self, *args, **kwargs):
-#		request = self.request
-#		return Product.objects.featured()
-
 class ProductFeaturedDetailView(DetailView):
 
 	queryset = Product.objects.all()
@@ -46,28 +42,11 @@ def product_list_view(request):
 	return render(request, "products/list.html", context)
 
 
-#class ProductDetailSlugView(DetailView):
-#	queryset = Product.objects.all()
-#	template_name = "products/detail.html"
-
 
 class ProductDetailView(DetailView):
 	queryset = Product.objects.all()
 	template_name = "products/detail.html"
 
-
-	#  def get_context_data(self, *args, **kwargs):
-	#  	context = super(ProductDetailView, self).get_context_data(*args **kwargs)
-	#  	print(context)
-	#  	return context
-
-# def get_object(self, *args, **kwargs):
-# 	request = self.request
-# 	pk = self.kwargs.get('pk')
-# 	instance = Product.objects.get_by_id(pk)
-# 	if instance is None:
-# 	 	raise Http404("Product doesn't exist")
-# 	return instance
 
 def get_queryset(self, *args, **kwargs):
 		request = self.request
@@ -87,23 +66,29 @@ def product_detail_view(request, pk=None, *args, **kwargs):
 
 	return render(request, "products/detail.html", context)
 
+# This is the function to view cart.
 @login_required
 def view_cart(request):
-	print(request.user.cart.all())
 	return render(request,'cart.html',{'products':request.user.cart})
+
+# This executes when you add a item to cart.
 
 @login_required
 def add_to_cart(request,pk):
+	# A simple try catch block so it doesn't show errors
 	try:
-		request.user.cart.add(Product.objects.get(pk=pk))
+		# This adds the product to cart.
 
+		request.user.cart.add(Product.objects.get(pk=pk))
 	except Product.DoesNotExist:
 		pass
 	return redirect('view_cart')
 
 @login_required
 def remove_from_cart(request,pk):
+	# A simple try catch block so it doesn't show errors
 	try:
+		# This removes the product to cart.
 		request.user.cart.remove(Product.objects.get(pk=pk))
 
 	except Product.DoesNotExist:

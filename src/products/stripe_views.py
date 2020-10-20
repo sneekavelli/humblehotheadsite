@@ -7,10 +7,13 @@ from django.contrib.auth.decorators import login_required
 
 stripe.api_key = settings.STRIPE_API_KEY_SECRET
 
+# This is payment view.
 @login_required
 def payment(request):
     return render(request,'stripe.html')
 
+# This is creates a session and return session id.
+# The price is as per cart
 @login_required
 def get_session(request):
     if request.is_secure():
@@ -37,6 +40,7 @@ def get_session(request):
     )
     return JsonResponse({'id':checkout_session.id})
 
+#This saves stripe id and customer id in Orders model
 @login_required
 def success(request):
     id = request.GET.get('session_id')

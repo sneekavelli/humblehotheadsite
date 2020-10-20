@@ -4,6 +4,8 @@ from .models import Address
 from .forms import AddressForm
 from django.contrib.auth.decorators import login_required
 
+# This is address view.
+# To add addresses view.
 @login_required
 def address_view(request):
     form = AddressForm
@@ -16,7 +18,7 @@ def address_view(request):
             return HttpResponseRedirect(request.get_full_path())
     return render(request,'address.html',{'form':form,'addresses':request.user.address_set.all()})
 
-
+# To delete addresses view.
 @login_required
 def address_delete(request,pk):
     add = get_object_or_404(Address,pk=pk)
@@ -27,6 +29,7 @@ def address_delete(request,pk):
 
 
 
+# This gets executed when you click Checkout.
 @login_required
 def proceed_order(request):
     if request.method == 'POST':
