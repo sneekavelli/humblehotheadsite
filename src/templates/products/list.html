@@ -2,8 +2,19 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% load filters %}
+<style media="screen">
+.carousel{
+    max-height: 500px;
+    max-width: 500px;
+
+    width: 100%;
+    height: auto;
+}
+
+</style>
 <div class="container">
-  <div class="dropdown mt-2">
+  <!-- <div class="dropdown my-2">
     <button class="btn btn-secondary" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Filters
     </button>
@@ -23,12 +34,70 @@
         </div>
       </div>
     </div>
-  </div>
-  <ul class="list-group mt-5">
-    {% for obj in object_list %}
-      <a href="/products/{{obj.pk}}/" class="list-group-item list-group-item-action">{{ obj.title }}</a>
+  </div> -->
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    {% for i in object_list.keys %}
+      {% if forloop.counter == 1 %}
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" id="{{i}}-tab" data-toggle="tab" href="#{{i}}__tab" role="tab" aria-controls="home" aria-selected="true">{{i}}</a>
+        </li>
+      {% else %}
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="{{i}}-tab" data-toggle="tab" href="#{{i}}__tab" role="tab" aria-controls="home" aria-selected="true">{{i}}</a>
+        </li>
+      {% endif %}
     {% endfor %}
   </ul>
+  <div class="tab-content" id="myTabContent">
+    {% for i in object_list.keys %}
+      {% if forloop.counter == 1 %}
+        <div class="tab-pane fade show active" id="{{i}}__tab" role="tabpanel">
+          {% with obj=object_list|get_val:i %}
+          <div class="row">
+            {% for i in obj %}
+              <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <img src="{{i.image.url}}" class="carousel">
+                <h4 class="ml-1">{{i.title}}</h4>
+                <h4 class="ml-1">{{i.price}} £</h4>
+
+                <a href="/products/{{i.pk}}/" class="stretched-link"></a>
+              </div>
+            {% endfor %}
+          </div>
+          {% endwith %}
+        </div>
+      {% else %}
+        <div class="tab-pane fade" id="{{i}}__tab" role="tabpanel">
+          {% with obj=object_list|get_val:i %}
+          <div class="row">
+            {% for i in obj %}
+              <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <img src="{{i.image.url}}" class="carousel">
+                <h4 class="ml-1">{{i.title}}</h4>
+                <h4 class="ml-1">{{i.price}} £</h4>
+
+                <a href="/products/{{i.pk}}/" class="stretched-link"></a>
+              </div>
+            {% endfor %}
+          </div>
+          {% endwith %}
+        </div>
+      {% endif %}
+    {% endfor %}
+    <!-- <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"></div>
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"></div> -->
+  </div>
+  <!-- <div class="row">
+    {% for i in object_list %}
+      <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+        <img src="{{i.image.url}}" class="carousel">
+        <h4 class="ml-1">{{i.title}}</h4>
+        <h4 class="ml-1">{{i.price}} £</h4>
+
+        <a href="/products/{{i.pk}}/" class="stretched-link"></a>
+      </div>
+    {% endfor %}
+  </div> -->
 </div>
 {% endblock %}
 {% block js %}
