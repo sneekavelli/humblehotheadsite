@@ -44,7 +44,7 @@ from .views import (
  	)
 from django.contrib.auth import get_user_model
 
-
+from django.views.generic import TemplateView
 
 
 urlpatterns = [
@@ -78,7 +78,11 @@ urlpatterns = [
     path('addresses/',order_views.address_view),
     path('address_delete/<pk>/',order_views.address_delete,name='address_delete'),
 
-    path('proceed_order/',order_views.proceed_order)
+    path('proceed_order/',order_views.proceed_order),
+
+    path('about-us/',TemplateView.as_view(template_name='about.html')),
+    path('help-and-support/',TemplateView.as_view(template_name='help.html')),
+
 
 
 ]
