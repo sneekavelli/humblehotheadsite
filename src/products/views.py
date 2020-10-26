@@ -30,19 +30,19 @@ class ProductListView(ListView):
 
 
 def product_list_view(request):
-	# queryset = Product.objects.all()
-	# if 'category' in request.GET:
-	# 	cats = request.GET.get('category').split(',')
-	# 	cats = list(map(lambda x:int(x),cats))
-	# 	queryset = Product.objects.filter(category__pk__in=cats)
 	# if 'gender' in request.GET:
 	# 	queryset = Product.objects.filter(gender=request.GET.get('gender'))
-	queryset = Product.objects.all()
+	# queryset = Product.objects.all()
 	dict_ = {i.category:i.product_set.all() for i in Category.objects.all()}
 
 	context = { 'object_list' :dict_,'categories':Category.objects.all()}
 	return render(request, "products/list.html", context)
 
+def gender_views(request,gender):
+	dict_ = {i.category:i.product_set.all().filter(gender=gender) for i in Category.objects.all()}
+
+	context = { 'object_list' :dict_,'categories':Category.objects.all()}
+	return render(request, "products/list.html", context)
 
 
 class ProductDetailView(DetailView):

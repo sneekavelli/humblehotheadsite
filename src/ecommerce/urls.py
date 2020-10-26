@@ -30,7 +30,7 @@ from products.views import (
  ProductFeaturedListView,
  ProductFeaturedDetailView,
  view_cart,
- add_to_cart,remove_from_cart
+ add_to_cart,remove_from_cart,gender_views
 )
 
 from products import stripe_views,order_views
@@ -62,6 +62,7 @@ urlpatterns = [
     path('products/<int:pk>/', ProductDetailView.as_view()),
     #path('products/<str:slug>', ProductDetailSlugView.as_view()),
     path('products-fbv/<int:pk>/', product_detail_view),
+    path('category/<str:gender>/',gender_views),
     path('admin/', admin.site.urls),
 
     path('accounts/', include('accounts.urls')),

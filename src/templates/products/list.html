@@ -53,33 +53,45 @@
       {% if forloop.counter == 1 %}
         <div class="tab-pane fade show active" id="{{i}}__tab" role="tabpanel">
           {% with obj=object_list|get_val:i %}
-          <div class="row">
-            {% for i in obj %}
-              <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                <img src="{{i.image.url}}" class="carousel">
-                <h4 class="ml-1">{{i.title}}</h4>
-                <h4 class="ml-1">{{i.price}} £</h4>
+          {% if obj|length == 0 %}
+            <div class="alert alert-info">
+              Nothing to show in this category
+            </div>
+          {% else %}
+            <div class="row">
+              {% for i in obj %}
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                  <img src="{{i.image.url}}" class="carousel">
+                  <h4 class="ml-1">{{i.title}}</h4>
+                  <h4 class="ml-1">{{i.price}} £</h4>
 
-                <a href="/products/{{i.pk}}/" class="stretched-link"></a>
-              </div>
-            {% endfor %}
-          </div>
+                  <a href="/products/{{i.pk}}/" class="stretched-link"></a>
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
           {% endwith %}
         </div>
       {% else %}
         <div class="tab-pane fade" id="{{i}}__tab" role="tabpanel">
           {% with obj=object_list|get_val:i %}
-          <div class="row">
-            {% for i in obj %}
-              <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                <img src="{{i.image.url}}" class="carousel">
-                <h4 class="ml-1">{{i.title}}</h4>
-                <h4 class="ml-1">{{i.price}} £</h4>
+          {% if obj|length == 0 %}
+            <div class="alert alert-info">
+              Nothing to show in this category
+            </div>
+          {% else %}
+            <div class="row">
+              {% for i in obj %}
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                  <img src="{{i.image.url}}" class="carousel">
+                  <h4 class="ml-1">{{i.title}}</h4>
+                  <h4 class="ml-1">{{i.price}} £</h4>
 
-                <a href="/products/{{i.pk}}/" class="stretched-link"></a>
-              </div>
-            {% endfor %}
-          </div>
+                  <a href="/products/{{i.pk}}/" class="stretched-link"></a>
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
           {% endwith %}
         </div>
       {% endif %}
